@@ -1,5 +1,7 @@
 DNS Filtering & AdBlock Professional Tester v3.0
 
+https://olverclock.github.io/adblock_tester_-dns_filtering/
+
 Ferramenta avançada para testar Pi-hole, AdGuard, NextDNS, uBlock Origin, AdBlock Plus, Brave e outros bloqueadores em diferentes camadas (DNS, navegador, CNAME e rastreamento avançado).
 Focada em transparência, métricas em tempo real e visual moderno.
 
