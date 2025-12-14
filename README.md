@@ -3,6 +3,8 @@ DNS Filtering & AdBlock Professional Tester v3.0
 Ferramenta avançada para testar Pi-hole, AdGuard, NextDNS, uBlock Origin, AdBlock Plus, Brave e outros bloqueadores em diferentes camadas (DNS, navegador, CNAME e rastreamento avançado).
 Focada em transparência, métricas em tempo real e visual moderno.
 
+<img width="1440" height="739" alt="image" src="https://github.com/user-attachments/assets/11fc344e-059a-4417-979a-104de4f3cabc" />
+
 ✨ Destaques
 Engine de testes declarativa (baseada em JSON).
 
@@ -82,6 +84,8 @@ CNAME Cloaking
 Subdomínios como analytics.example.com, metrics.website.com, track.yoursite.com, etc.
 
 Simula trackers de primeira parte mascarados via CNAME.
+
+<img width="1440" height="739" alt="image" src="https://github.com/user-attachments/assets/9c6c36b5-ce29-4876-80fc-b1747c3f3dee" />
 
 Rastreamento Avançado
 Fingerprinting:
