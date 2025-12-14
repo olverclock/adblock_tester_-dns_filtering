@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pi-hole & DNS Filtering Professional Tester v3.0</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M12 6v6l4 2"/>
+                </svg>
+                <div class="logo-text">
+                    <h1>DNS Filtering & AdBlock Tester</h1>
+                    <span class="version-badge">v3.0 Enterprise • 100+ Tests</span>
+                </div>
+            </div>
+            <div class="header-controls">
+                <label class="toggle-switch">
+                    <input type="checkbox" id="auditMode">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label">Modo Auditoria</span>
+                </label>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="5"/>
+                        <line x1="12" y1="1" x2="12" y2="3"/>
+                        <line x1="12" y1="21" x2="12" y2="23"/>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                        <line x1="1" y1="12" x2="3" y2="12"/>
+                        <line x1="21" y1="12" x2="23" y2="12"/>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
+                    <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Dashboard -->
+        <main class="dashboard">
+            <!-- Status Panel -->
+            <section class="status-panel">
+                <h2>Status de Proteção</h2>
+                
+                <!-- Multi-Score System -->
+                <div class="multi-score-grid">
+                    <div class="score-card main-score">
+                        <div class="score-circle" id="scoreCircleMain">
+                            <svg viewBox="0 0 120 120">
+                                <circle class="score-bg" cx="60" cy="60" r="54"/>
+                                <circle class="score-progress" id="scoreProgressMain" cx="60" cy="60" r="54"/>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number" id="scoreNumberMain">0</span>
+                                <span class="score-label">/ 100</span>
+                            </div>
+                        </div>
+                        <h3>Score Global</h3>
+                        <p id="statusTextMain">Aguardando testes...</p>
+                    </div>
+
+                    <div class="score-card">
+                        <div class="score-circle small" id="scoreCircleDNS">
+                            <svg viewBox="0 0 80 80">
+                                <circle class="score-bg" cx="40" cy="40" r="36"/>
+                                <circle class="score-progress" id="scoreProgressDNS" cx="40" cy="40" r="36"/>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number small" id="scoreNumberDNS">0</span>
+                            </div>
+                        </div>
+                        <h4>🧠 DNS Level</h4>
+                        <p id="statusTextDNS">-</p>
+                    </div>
+
+                    <div class="score-card">
+                        <div class="score-circle small" id="scoreCircleBrowser">
+                            <svg viewBox="0 0 80 80">
+                                <circle class="score-bg" cx="40" cy="40" r="36"/>
+                                <circle class="score-progress" id="scoreProgressBrowser" cx="40" cy="40" r="36"/>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number small" id="scoreNumberBrowser">0</span>
+                            </div>
+                        </div>
+                        <h4>🌐 Browser Level</h4>
+                        <p id="statusTextBrowser">-</p>
+                    </div>
+
+                    <div class="score-card">
+                        <div class="score-circle small" id="scoreCircleCNAME">
+                            <svg viewBox="0 0 80 80">
+                                <circle class="score-bg" cx="40" cy="40" r="36"/>
+                                <circle class="score-progress" id="scoreProgressCNAME" cx="40" cy="40" r="36"/>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number small" id="scoreNumberCNAME">0</span>
+                            </div>
+                        </div>
+                        <h4>🧬 CNAME Protection</h4>
+                        <p id="statusTextCNAME">-</p>
+                    </div>
+
+                    <div class="score-card">
+                        <div class="score-circle small" id="scoreCircleAdvanced">
+                            <svg viewBox="0 0 80 80">
+                                <circle class="score-bg" cx="40" cy="40" r="36"/>
+                                <circle class="score-progress" id="scoreProgressAdvanced" cx="40" cy="40" r="36"/>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number small" id="scoreNumberAdvanced">0</span>
+                            </div>
+                        </div>
+                        <h4>🎭 Advanced Tracking</h4>
+                        <p id="statusTextAdvanced">-</p>
+                    </div>
+                </div>
+
+                <!-- Detection Info -->
+                <div class="detection-info">
+                    <div class="detection-item" id="dnsFilteringDetection">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <div class="detection-text">
+                            <span>DNS Filtering</span>
+                            <small>Pi-hole / AdGuard / NextDNS</small>
+                            <strong id="dnsFilteringStatus">Verificando...</strong>
+                        </div>
+                    </div>
+                    <div class="detection-item" id="adblockDetection">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2"/>
+                            <line x1="9" y1="9" x2="15" y2="15"/>
+                            <line x1="15" y1="9" x2="9" y2="15"/>
+                        </svg>
+                        <div class="detection-text">
+                            <span>Browser AdBlock</span>
+                            <small>uBlock / AdBlock Plus / Brave</small>
+                            <strong id="adblockStatus">Verificando...</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar" id="progressBar"></div>
+                    <span class="progress-text" id="progressText">0% • 0/0 testes</span>
+                </div>
+
+                <!-- Test Stats -->
+                <div class="test-stats">
+                    <div class="stat-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                            <polyline points="22 4 12 14.01 9 11.01"/>
+                        </svg>
+                        <div class="stat-content">
+                            <span class="stat-value" id="blockedCount">0</span>
+                            <span class="stat-label">Bloqueados</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="15" y1="9" x2="9" y2="15"/>
+                            <line x1="9" y1="9" x2="15" y2="15"/>
+                        </svg>
+                        <div class="stat-content">
+                            <span class="stat-value" id="allowedCount">0</span>
+                            <span class="stat-label">Permitidos</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 2v20M2 12h20"/>
+                        </svg>
+                        <div class="stat-content">
+                            <span class="stat-value" id="totalCount">0</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <div class="stat-content">
+                            <span class="stat-value" id="executionTime">0s</span>
+                            <span class="stat-label">Tempo</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="startTest">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polygon points="5 3 19 12 5 21 5 3"/>
+                        </svg>
+                        Iniciar Testes Completos
+                    </button>
+                    <button class="btn btn-secondary" id="exportJSON" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                        </svg>
+                        JSON Técnico
+                    </button>
+                    <button class="btn btn-secondary" id="exportSimple" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        </svg>
+                        TXT Simples
+                    </button>
+                    <button class="btn btn-secondary" id="exportHTML" disabled>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        </svg>
+                        Relatório HTML
+                    </button>
+                </div>
+            </section>
+
+            <!-- Methodology -->
+            <section class="methodology-panel">
+                <h2>🧪 Como Funcionam os Testes?</h2>
+                <div class="methodology-content">
+                    <div class="method-item">
+                        <span class="method-icon">🔒</span>
+                        <div class="method-text">
+                            <strong>Este site NÃO exibe anúncios reais</strong>
+                            <p>Utilizamos requisições técnicas controladas para domínios conhecidos de tracking</p>
+                        </div>
+                    </div>
+                    <div class="method-item">
+                        <span class="method-icon">🔍</span>
+                        <div class="method-text">
+                            <strong>Testes em múltiplas camadas</strong>
+                            <p>DNS, HTTP, JavaScript APIs, Fingerprinting, CNAME Cloaking</p>
+                        </div>
+                    </div>
+                    <div class="method-item">
+                        <span class="method-icon">⚡</span>
+                        <div class="method-text">
+                            <strong>100% local e transparente</strong>
+                            <p>Nenhum dado é coletado ou enviado para servidores externos</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Category Filter -->
+            <section class="category-filter">
+                <h3>Filtrar Categorias</h3>
+                <div class="filter-buttons" id="filterButtons">
+                    <button class="filter-btn active" data-filter="all">Todas</button>
+                </div>
+            </section>
+
+            <!-- Test Categories -->
+            <section class="test-categories" id="testCategories">
+                <!-- Categories will be dynamically generated -->
+            </section>
+
+            <!-- Smart Recommendations -->
+            <section class="recommendations-panel" id="recommendationsPanel" style="display: none;">
+                <h2>💡 Recomendações Inteligentes</h2>
+                <p class="recommendations-intro">Baseado nos resultados, identificamos melhorias específicas:</p>
+                <div id="recommendationsList"></div>
+            </section>
+
+            <!-- Blocklist Suggestions -->
+            <section class="blocklist-panel" id="blocklistPanel" style="display: none;">
+                <h2>📋 Listas de Bloqueio Recomendadas</h2>
+                <p class="blocklist-intro">Para melhorar as categorias com baixo bloqueio:</p>
+                <div id="blocklistSuggestions"></div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🔒 <strong>Privacidade Total:</strong> Nenhum dado é coletado • Testes executados localmente • Código aberto e auditável</p>
+            <p><strong>v3.0 Enterprise Edition</strong> • 100+ Testes Profissionais • Engine Declarativa • Modo Auditoria Técnica</p>
+            <p>Compatível com: Pi-hole, AdGuard Home, NextDNS, Unbound, uBlock Origin, AdBlock Plus, Brave Shields</p>
+			<p>Desenvolvido por <strong>olverclock</strong> dezembro de 2025</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
