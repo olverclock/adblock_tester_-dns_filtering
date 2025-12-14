@@ -171,7 +171,7 @@ Browser AdBlock: Active / Inactive.
 🚀 Como Usar
 1. Clonar o repositório
 bash
-git clone https://github.com/SEU_USUARIO/SEU_REPO.git
+git clone [https://github.com/olverclock/adblock_tester_-dns_filtering.git](https://github.com/olverclock/adblock_tester_-dns_filtering.git)
 cd SEU_REPO
 2. Abrir o projeto
 Este projeto é estático (HTML + CSS + JS):
